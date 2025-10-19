@@ -169,7 +169,6 @@ console.log(sum);
 
 //   console.log(result); // 24
 class Calculator {
-    // На старті ініціалізуємо результат нулем
     constructor() {
         this.result = 0;
     }
@@ -202,14 +201,114 @@ class Calculator {
 }
 
 const calc = new Calculator();
-
-// Виконуємо ланцюжок операцій
 const result = calc
-  .number(10)     // Встановлюємо початкове значення 10
-  .add(5)         // Додаємо 5 (10 + 5 = 15)
-  .subtract(3)    // Віднімаємо 3 (15 - 3 = 12)
-  .multiply(4)    // Множимо на 4 (12 * 4 = 48)
-  .divide(2)      // Ділимо на 2 (48 / 2 = 24)
-  .getResult();   // Отримуємо результат: 24
+  .number(10) 
+  .add(5)         
+  .subtract(3)   
+  .multiply(4)   
+  .divide(2)      
+  .getResult();  
 
-console.log(result); // Виведе в консоль: 24
+console.log(result);
+
+// 12 Задача
+ // Напиши клас Client який створює об'єкт з властивостями login email.
+ // Оголоси приватні властивості #login #email, доступ до яких зроби 
+ // через геттер та сеттер login email
+class Client {
+  #login;
+  #email;
+
+  constructor(login, email) {
+    this.#login = login;
+    this.#email = email;
+  }
+  get login() {
+    return this.#login;
+  }
+  set login(newLogin) {
+    this.#login = newLogin;
+  }
+  get email() {
+    return this.#email;
+  }
+  set email(newEmail) {
+    this.#email = newEmail;
+  }
+}
+const client = new Client('myLogin', 'myemail@example.com');
+
+console.log(client.login);  
+console.log(client.email);
+
+client.login = 'newLogin548';
+client.email = 'new.email@exampleprime.com';
+
+console.log(client.login); 
+console.log(client.email);
+
+// 13 Задача
+  //  Наслідування у класах!
+  // Cтворіть клас `Person`, який містить наступні властивості:
+  //  - `name` - ім'я людини;
+  //  - `age`- вік людини;
+  //  - `gender` - стать людини;
+  //  - `email`- електронна пошта людини.
+  
+  // Крім того, клас `Person` має мати метод `getDetails()`,
+  // який повертає об'єкт з ім'ям, віком, статтю 
+  //та електронною поштою людини.
+  
+  // 
+  // Потім Створіть клас `Employee`, який розширює клас `Person` і містить наступні властивості:
+  //  - salary - зарплата співробітника;
+  //  - department - відділ, в якому працює співробітник.
+  // Крім того, клас `Employee` має мати метод `getEmployeeDetails()`, який повертає об'єкт з зарплатою співробітника та відділом, в якому він працює.
+
+  class Person {
+  constructor(name, age, gender, email) {
+    this.name = name;
+    this.age = age;
+    this.gender = gender;
+    this.email = email;
+  }
+
+  getDetails() {
+    return {
+      name: this.name,
+      age: this.age,
+      gender: this.gender,
+      email: this.email,
+    };
+  }
+}
+
+class Employee extends Person {
+  constructor(name, age, gender, email, salary, department) {
+    super(name, age, gender, email);
+    this.salary = salary;
+    this.department = department;
+  }
+
+  getEmployeeDetails() {
+    return {
+      salary: this.salary,
+      department: this.department,
+    };
+  }
+}
+
+const employee = new Employee(
+  'John Doe',
+  30,
+  'male',
+  'john.doe@example.com',
+  50000,
+  'IT'
+);
+
+const personDetails = employee.getDetails();
+console.log('Загальна інформація:', personDetails);
+
+const employeeDetails = employee.getEmployeeDetails();
+console.log('Робоча інформація:', employeeDetails);
